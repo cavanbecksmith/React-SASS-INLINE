@@ -1,0 +1,43 @@
+.ColCell {
+    display: inline-block;
+    padding-left: 8%;
+    padding-right: 8%;
+    width: 220px;
+    @media (max-width: 1030px) {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+    @media (max-width: 800px) {
+        padding: 30px !important;
+        box-sizing: border-box;
+        width: 100%;
+    }
+    &:first-child{
+        padding-left: 0;
+    }
+    &:last-child{
+        padding-right: 0;
+    }
+    &__inner {
+        img {
+            padding-bottom: 52px;
+        }
+        p {
+            line-height: 20px;
+            margin: 0;
+            color: $para-color;
+        }
+    }
+    &__cta{
+        margin-top: 40px;
+        padding: 13px 18px 17px 18px;
+        border-radius: 5px;
+        font-size: 14px;
+        background-color: $cta-bg;
+        color: white;
+        font-weight: bold;
+        display: inline-block;
+        text-decoration: none;
+        @media (max-width: 800px) {}
+    }
+}

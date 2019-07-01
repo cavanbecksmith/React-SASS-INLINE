@@ -1,0 +1,10 @@
+.Container {
+    padding-top: 71px;
+    padding-bottom: 78px;
+    text-align: center;
+    &__inner{
+        max-width: 980px;
+        margin: 0 auto;
+        position: relative;
+    }
+}

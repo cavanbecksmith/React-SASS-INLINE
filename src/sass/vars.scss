@@ -1,0 +1,26 @@
+// --- Media Query sizes
+$xxl-width: 1600px;
+$xl-width: 1100px;
+$lg-width: 900px;
+$md-width: 800px;
+$sm-width: 500px;
+$smallBanner-width: 1000px;
+$smallBanner-height: 580px;
+
+// --- Background z-index
+$very-front: 3;
+$front: 2;
+$middle: 1;
+$back: 0;
+$very-back: -1;
+
+// --- Margins & padding
+$sideMargin: 9rem;
+
+// --- Reusable colors
+$para-color: #555555;
+$dark-grey: #1d1d1d;
+$turq: #44ada2;
+$nav-bg: #ededed;
+$cta-bg: #a91e17;
+$article-txt-color: #36618c;

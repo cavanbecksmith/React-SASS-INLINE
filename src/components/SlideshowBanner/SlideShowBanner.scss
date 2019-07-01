@@ -1,0 +1,261 @@
+.SlideShowWrapper{
+    background: black;
+    overflow: hidden;
+    position: relative;
+    height: 600px;
+
+    @media  (max-width: $xl-width){ /* 1100px */
+        height: 600px;
+    }
+
+}
+
+.SlideShowBanner{
+    $overlayOpacity: 0.60;
+    @include Fullsize;
+    position: absolute;
+    background-size: contain;
+    @media (max-width: $xl-width) { /* 700px */
+        left: 0;
+    }
+    &.hide{
+        opacity: 0;
+        z-index: 1;
+    }
+
+    &.hidden{
+        opacity: 0;
+        display: none;
+    }
+    
+    &__backgroundIMG{
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include Fullsize;
+        @include overlay($overlayOpacity);
+        &.inAnim{
+            opacity: 1;
+            animation:background_anim_in 1s 1;
+            -moz-animation:background_anim_in 1s 1;
+            -webkit-animation:background_anim_in 1s 1;
+            -o-animation:background_anim_in 1s 1;
+        }
+        &.outAnim{
+            opacity: 0;
+            animation:background_anim_out 0.5s 1;
+            -moz-animation:background_anim_out 0.5s 1;
+            -webkit-animation:background_anim_out 0.5s 1;
+            -o-animation:background_anim_out 0.5s 1;
+        }
+    }
+    &__container{
+        margin: 0 $sideMargin;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        @media (max-width: $md-width) { /* 700px */
+            height: calc(100% - #{$sideMargin});
+            left: 0;
+        }
+        @media (max-width: $xl-width) { /* 1100px */
+            height: 100%;
+        }
+        &__innerIMG{
+            @include overlay($overlayOpacity);
+            background-size: cover;
+            position: absolute;
+            left: 0;
+            top: 0;
+            left: -#{$sideMargin};
+            width: calc(100% + (#{$sideMargin} * 2));
+            height: 100%;
+            @media (max-width: $xl-width){
+                background-size: cover;
+                position: absolute;
+                left: 0;
+                left: -9rem;
+                width: calc(100% + (9rem * 2));
+                height: 100%;
+            }
+            @media (max-width: $sm-width) { /* 500px */
+                display: none !important;
+            }
+            &.outAnim{
+                opacity: 0;
+                animation:container_anim_out 1s 1;
+                -moz-animation:container_anim_out 1s 1;
+                -webkit-animation:container_anim_out 1s 1;
+                -o-animation:container_anim_out 1s 1;
+            }
+            &.inAnim{
+                transform: rotate(0);
+                opacity: 1;
+                animation:container_anim_in 3s 1;
+                -moz-animation:container_anim_in 3s 1;
+                -webkit-animation:container_anim_in 3s 1;
+                -o-animation:container_anim_in 3s 1;
+            }
+        }
+        &__content{
+            $y: -50%;
+            position: relative;
+            width: 100%;
+            height: calc(100% - 13.5rem);
+            overflow: hidden;
+            box-sizing: border-box;
+            margin-top: 9rem;
+            margin-bottom: 4.5rem;
+            &__text{
+                $y: -50%;
+                width: 100%;
+
+                will-change: transform;
+                height: auto;
+                display: inline-block;
+                position: absolute;
+                color: white;
+                vertical-align: middle;
+                top: 50%;
+                overflow: hidden;
+                transform: translate3d(0, $y, 0);
+                z-index: 10000;
+                padding: 30px;
+                box-sizing: border-box;
+                font-family: 'Open Sans', sans-serif;
+                text-align: center;
+                &.inAnim{
+                    $x: 0;
+                    transform: translate3d($x, $y, 0);
+                    animation: inAnim 1s 1;
+                    -moz-animation: inAnim 1s 1;
+                    -webkit-animation: inAnim 1s 1;
+                    -o-animation: inAnim 1s 1;
+                    @keyframes inAnim {
+                        from{
+                            opacity: 0;
+                            transform: translate3d(200%, $y, 0); 
+                        }
+                        to{
+                            opacity: 1;
+                            transform: translate3d($x, $y, 0);
+                        }
+                    }
+                }
+                &.outAnim{
+                    $x: -100%;
+                    transition: translate 1s;
+                    transform: translate3d($x, $y, 0);
+                    animation:outAnim 1s 1;
+                    -moz-animation:outAnim 1s 1;
+                    -webkit-animation:outAnim 1s 1;
+                    -o-animation:outAnim 1s 1;
+                    @keyframes outAnim {
+                        from{
+                            opacity: 1;
+                            transform: translate3d(0, $y, 0);
+
+                        }
+                        to{
+                            opacity: 0;
+                            transform: translate3d($x, $y, 0);
+                        }
+                    }
+                }
+                .header{
+                    font-size: 3.5em;
+                    margin-bottom: 20px;
+                    @media (max-width: $md-width) { /* 800px */
+                        // font-size: 3em;
+                        margin-bottom: 10px;
+                    }
+                    @media (max-width: $sm-width) { /* 500px */
+                        // font-size: 24px;
+                    }
+                }
+                .footnote{
+                    font-size:1.25em;
+                    @media (max-width: $md-width) { /* 800px */
+                        // font-size: 1.5em;
+                    }
+                    @media (max-width: $sm-width) { /* 500px */
+                        // font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.hidden{
+    opacity: 0;
+}
+
+// Inner IMG Animation - Transition IN
+@keyframes container_anim_in
+{
+    0% {
+        opacity: 0;
+        transform: rotate(0deg) scale(1);
+    }
+    // 20%{
+        
+    // }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+
+// Inner IMG Animation - Transition OUT
+@keyframes container_anim_out
+{
+    0% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+    100%{
+        opacity: 0;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+// Background IMG Animation - Transition IN
+@keyframes background_anim_in
+{
+    0% {
+        opacity: 0;
+        transform: rotate(0deg) scale(1);
+    }
+    // 20%{
+    // }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+// Background IMG Animation - Transition OUT
+@keyframes background_anim_out
+{
+    0% {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0;
+    }
+}
+
+// Wrapper Animation - Hide Frame
+// It is currently opacity 1 because we dont want the text to hide while all of the other animations do their magic
+@keyframes frame_hide
+{
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
